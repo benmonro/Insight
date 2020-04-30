@@ -1,9 +1,10 @@
 package com.meemaw.auth.user.datasource;
 
+import com.meemaw.auth.model.Organization;
+import com.meemaw.auth.model.User;
+import com.meemaw.auth.model.UserDTO;
+import com.meemaw.auth.model.UserRole;
 import com.meemaw.auth.signup.model.SignupRequest;
-import com.meemaw.shared.auth.Organization;
-import com.meemaw.shared.auth.UserDTO;
-import com.meemaw.shared.auth.UserRole;
 import com.meemaw.shared.pg.PgError;
 import com.meemaw.shared.rest.exception.DatabaseException;
 import com.meemaw.shared.rest.response.Boom;
@@ -55,7 +56,7 @@ public class PgUserDatasource implements UserDatasource {
   private static final String FIND_USER_BY_EMAIL_RAW_SQL = "SELECT * FROM auth.user WHERE email = $1";
 
   @Override
-  public CompletionStage<Optional<UserDTO>> findUser(String email) {
+  public CompletionStage<Optional<User>> findUser(String email) {
     Tuple values = Tuple.of(email);
     return pgPool.preparedQuery(FIND_USER_BY_EMAIL_RAW_SQL, values)
         .thenApply(pgRowSet -> {

@@ -1,7 +1,7 @@
 package com.meemaw.auth.signup.datasource;
 
+import com.meemaw.auth.model.User;
 import com.meemaw.auth.signup.model.dto.SignupRequestDTO;
-import com.meemaw.shared.auth.UserDTO;
 import com.meemaw.shared.rest.exception.DatabaseException;
 import io.vertx.axle.pgclient.PgPool;
 import io.vertx.axle.sqlclient.Row;
@@ -24,11 +24,10 @@ public class PgSignupDatasource implements SignupDatasource {
 
   private static final String INSERT_SIGNUP_RAW_SQL = "INSERT INTO auth.signup(user_email, org, user_id) VALUES($1, $2, $3) RETURNING token, created_at";
 
-  public CompletionStage<SignupRequestDTO> create(Transaction transaction,
-      UserDTO userDTO) {
-    String email = userDTO.getEmail();
-    String org = userDTO.getOrg();
-    UUID userId = userDTO.getId();
+  public CompletionStage<SignupRequestDTO> create(Transaction transaction, User user) {
+    String email = user.getEmail();
+    String org = user.getOrg();
+    UUID userId = user.getId();
     Tuple values = Tuple.of(email, org, userId);
 
     return transaction.preparedQuery(INSERT_SIGNUP_RAW_SQL, values)

@@ -4,18 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.quarkus.jackson.ObjectMapperCustomizer;
-import javax.inject.Singleton;
+import lombok.experimental.UtilityClass;
 
-@Singleton
-public class JacksonObjectMapperCustomizer implements ObjectMapperCustomizer {
+@UtilityClass
+public class JacksonObjectMapperCustomizer {
 
-  @Override
-  public void customize(ObjectMapper mapper) {
-    configure(mapper);
-  }
-
-  public static ObjectMapper configure(ObjectMapper mapper) {
+  public ObjectMapper configure(ObjectMapper mapper) {
     mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     mapper.registerModule(new JavaTimeModule());

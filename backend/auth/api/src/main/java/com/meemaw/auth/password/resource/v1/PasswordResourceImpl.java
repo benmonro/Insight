@@ -4,7 +4,7 @@ import com.meemaw.auth.password.model.dto.PasswordForgotRequestDTO;
 import com.meemaw.auth.password.model.dto.PasswordResetRequestDTO;
 import com.meemaw.auth.password.service.PasswordService;
 import com.meemaw.auth.sso.service.SsoService;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import com.meemaw.shared.rest.response.DataResponse;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;

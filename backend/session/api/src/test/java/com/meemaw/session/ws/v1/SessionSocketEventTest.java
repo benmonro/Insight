@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meemaw.events.stream.EventsStream;
 import com.meemaw.events.model.internal.AbstractBrowserEvent;
-import com.meemaw.test.testconainers.kafka.KafkaTestResource;
+import com.meemaw.quarkus.test.testconainers.kafka.KafkaTestResource;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import java.util.concurrent.TimeUnit;

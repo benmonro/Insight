@@ -12,9 +12,9 @@ import lombok.Value;
 public class DataResponse<T> {
 
   T data;
-  Boom error;
+  Boom<?> error;
 
-  public DataResponse(T data, Boom error) {
+  public DataResponse(T data, Boom<?> error) {
     this.data = data;
     this.error = error;
   }

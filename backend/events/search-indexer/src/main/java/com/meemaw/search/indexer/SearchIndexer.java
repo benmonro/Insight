@@ -1,7 +1,5 @@
 package com.meemaw.search.indexer;
 
-import com.meemaw.events.model.external.serialization.BrowserEventDeserializer;
-import com.meemaw.events.model.external.serialization.BrowserEventSerializer;
 import com.meemaw.events.model.internal.AbstractBrowserEvent;
 import com.meemaw.events.stream.EventsStream;
 import com.meemaw.events.stream.kafka.KafkaSourcedBatchProcessor;
@@ -58,7 +56,7 @@ public class SearchIndexer {
     producerProperties
         .put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     producerProperties
-        .put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, BrowserEventSerializer.class.getName());
+        .put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, String.class.getName());
     return producerProperties;
   }
 
@@ -69,7 +67,7 @@ public class SearchIndexer {
     consumerProps
         .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-        BrowserEventDeserializer.class.getName());
+        String.class.getName());
     consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
     consumerProps.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
     return consumerProps;

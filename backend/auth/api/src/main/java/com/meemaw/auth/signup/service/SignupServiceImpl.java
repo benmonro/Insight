@@ -1,13 +1,14 @@
 package com.meemaw.auth.signup.service;
 
+import com.meemaw.auth.model.User;
+import com.meemaw.auth.model.UserDTO;
+import com.meemaw.auth.model.UserRole;
 import com.meemaw.auth.password.service.PasswordService;
 import com.meemaw.auth.signup.datasource.SignupDatasource;
 import com.meemaw.auth.signup.model.SignupRequest;
 import com.meemaw.auth.signup.model.dto.SignupRequestCompleteDTO;
 import com.meemaw.auth.signup.model.dto.SignupRequestDTO;
 import com.meemaw.auth.user.datasource.UserDatasource;
-import com.meemaw.shared.auth.UserDTO;
-import com.meemaw.shared.auth.UserRole;
 import com.meemaw.shared.rest.exception.DatabaseException;
 import com.meemaw.shared.rest.response.Boom;
 import io.quarkus.mailer.Mail;
@@ -142,14 +143,14 @@ public class SignupServiceImpl implements SignupService {
   }
 
   @Override
-  public CompletionStage<UserDTO> createOrganization(String email) {
+  public CompletionStage<User> createOrganization(String email) {
     log.info("create organization email={}", email);
     return pgPool.begin()
         .thenCompose(transaction -> createOrganization(transaction, email)
             .thenCompose(user -> transaction.commit().thenApply(x -> user)));
   }
 
-  private CompletionStage<UserDTO> createOrganization(Transaction transaction, String email) {
+  private CompletionStage<User> createOrganization(Transaction transaction, String email) {
     return userDatasource
         .createOrganization(transaction, new SignupRequest(email))
         .thenCompose(org -> userDatasource.createUser(transaction, org).thenApply(

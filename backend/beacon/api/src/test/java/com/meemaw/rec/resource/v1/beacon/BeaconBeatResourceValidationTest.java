@@ -3,9 +3,8 @@ package com.meemaw.rec.resource.v1.beacon;
 import static com.meemaw.test.matchers.SameJSON.sameJson;
 import static io.restassured.RestAssured.given;
 
-import com.meemaw.rec.beacon.resource.v1.BeaconResource;
-import com.meemaw.shared.auth.Organization;
 import com.meemaw.test.testconainers.pg.Postgres;
+import com.meemaw.rec.beacon.resource.v1.BeaconResource;
 import io.quarkus.test.junit.QuarkusTest;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,7 +14,6 @@ import java.util.UUID;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
 
 @Postgres
 @QuarkusTest
@@ -42,7 +40,7 @@ public class BeaconBeatResourceValidationTest {
         .queryParam("UserID", UUID.randomUUID().toString())
         .queryParam("SessionID", UUID.randomUUID().toString())
         .queryParam("PageID", UUID.randomUUID().toString())
-        .queryParam("OrgID", Organization.identifier())
+        .queryParam("OrgID", "org123")
         .post(BeaconResource.PATH + "/beat")
         .then()
         .statusCode(422)
@@ -58,7 +56,7 @@ public class BeaconBeatResourceValidationTest {
         .queryParam("UserID", UUID.randomUUID().toString())
         .queryParam("SessionID", UUID.randomUUID().toString())
         .queryParam("PageID", UUID.randomUUID().toString())
-        .queryParam("OrgID", Organization.identifier())
+        .queryParam("OrgID", "org123")
         .body("{}").post(BeaconResource.PATH + "/beat")
         .then()
         .statusCode(400)
@@ -78,7 +76,7 @@ public class BeaconBeatResourceValidationTest {
         .queryParam("UserID", UUID.randomUUID().toString())
         .queryParam("SessionID", UUID.randomUUID().toString())
         .queryParam("PageID", UUID.randomUUID().toString())
-        .queryParam("OrgID", Organization.identifier())
+        .queryParam("OrgID", "org123")
         .body(payload).post(BeaconResource.PATH + "/beat")
         .then()
         .statusCode(400)
@@ -98,7 +96,7 @@ public class BeaconBeatResourceValidationTest {
         .queryParam("UserID", UUID.randomUUID().toString())
         .queryParam("SessionID", UUID.randomUUID().toString())
         .queryParam("PageID", UUID.randomUUID().toString())
-        .queryParam("OrgID", Organization.identifier())
+        .queryParam("OrgID", "org123")
         .body(payload).post(BeaconResource.PATH + "/beat")
         .then()
         .statusCode(400)

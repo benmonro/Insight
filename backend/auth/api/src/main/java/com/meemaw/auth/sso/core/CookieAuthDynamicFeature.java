@@ -2,7 +2,7 @@ package com.meemaw.auth.sso.core;
 
 import com.meemaw.auth.sso.datasource.SsoDatasource;
 import com.meemaw.auth.sso.model.SsoUser;
-import com.meemaw.shared.auth.AbstractCookieAuthDynamicFeature;
+import com.meemaw.shared.rest.auth.AbstractCookieAuthDynamicFeature;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;

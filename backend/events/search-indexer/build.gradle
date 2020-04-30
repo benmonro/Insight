@@ -8,8 +8,9 @@ dependencies {
     implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
     implementation project(":events:model")
 
-    testImplementation project(':shared:testing-utils')
-}
+    testImplementation project(":shared:testing-utils")
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"}
 
 test {
     useJUnitPlatform()

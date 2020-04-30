@@ -1,11 +1,11 @@
 package com.meemaw.auth.sso.service;
 
+import com.meemaw.auth.model.User;
 import com.meemaw.auth.password.service.PasswordService;
 import com.meemaw.auth.signup.service.SignupService;
 import com.meemaw.auth.sso.datasource.SsoDatasource;
 import com.meemaw.auth.sso.model.SsoUser;
 import com.meemaw.auth.user.datasource.UserDatasource;
-import com.meemaw.shared.auth.UserDTO;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -30,12 +30,12 @@ public class SsoHazelcastService implements SsoService {
   SignupService signupService;
 
   @Override
-  public CompletionStage<String> createSession(UserDTO user) {
+  public CompletionStage<String> createSession(User user) {
     return ssoDatasource.createSession(user);
   }
 
   @Override
-  public CompletionStage<Optional<UserDTO>> findSession(String sessionId) {
+  public CompletionStage<Optional<User>> findSession(String sessionId) {
     return ssoDatasource.findSession(sessionId)
         .thenApply(maybeSsoUser -> maybeSsoUser.map(SsoUser::dto));
   }
@@ -55,7 +55,7 @@ public class SsoHazelcastService implements SsoService {
     return socialFindOrCreateUser(email).thenCompose(this::createSession);
   }
 
-  private CompletionStage<UserDTO> socialFindOrCreateUser(String email) {
+  private CompletionStage<User> socialFindOrCreateUser(String email) {
     return userDatasource.findUser(email)
         .thenCompose(maybeUser -> {
           if (maybeUser.isPresent()) {

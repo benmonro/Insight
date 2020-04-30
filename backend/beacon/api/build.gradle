@@ -3,12 +3,12 @@ plugins {
 }
 
 dependencies {
-    implementation 'io.quarkus:quarkus-smallrye-openapi'
-    implementation 'io.quarkus:quarkus-hibernate-validator'
-    implementation 'io.quarkus:quarkus-reactive-pg-client'
-    implementation 'io.quarkus:quarkus-smallrye-health'
-    implementation project(":events:model")
-    implementation project(":shared:rest-api")
+    implementation "io.quarkus:quarkus-smallrye-openapi"
+    implementation "io.quarkus:quarkus-hibernate-validator"
+    implementation "io.quarkus:quarkus-reactive-pg-client"
+    implementation "io.quarkus:quarkus-smallrye-health"
+    implementation project(":shared:quarkus-rest-api")
+    implementation project(":events:quarkus-model")
 
-    testImplementation project(":shared:testing-utils")
+    testImplementation project(":shared:quarkus-testing-utils")
 }

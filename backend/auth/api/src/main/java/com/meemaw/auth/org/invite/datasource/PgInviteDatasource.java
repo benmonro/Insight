@@ -1,8 +1,8 @@
 package com.meemaw.auth.org.invite.datasource;
 
+import com.meemaw.auth.model.UserRole;
 import com.meemaw.auth.org.invite.model.dto.InviteCreateIdentifiedDTO;
 import com.meemaw.auth.org.invite.model.dto.InviteDTO;
-import com.meemaw.shared.auth.UserRole;
 import com.meemaw.shared.pg.PgError;
 import com.meemaw.shared.rest.exception.DatabaseException;
 import com.meemaw.shared.rest.response.Boom;

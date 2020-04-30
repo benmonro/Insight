@@ -1,9 +1,9 @@
 package com.meemaw.auth.sso.datasource;
 
 import com.hazelcast.map.IMap;
+import com.meemaw.auth.model.User;
 import com.meemaw.auth.sso.model.SsoUser;
-import com.meemaw.shared.auth.UserDTO;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import io.quarkus.arc.AlternativePriority;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
@@ -34,13 +34,13 @@ public class HazelcastSsoDatasource implements SsoDatasource {
     sessions = hazelcastProvider.getInstance().getMap(SESSION_MAP_NAME);
   }
 
-  public CompletionStage<String> createSession(UserDTO userDTO) {
+  public CompletionStage<String> createSession(User user) {
     String sessionId = SsoSession.newIdentifier();
     return sessions
-        .setAsync(sessionId, new SsoUser(userDTO), SsoSession.TTL, TimeUnit.SECONDS,
+        .setAsync(sessionId, new SsoUser(user), SsoSession.TTL, TimeUnit.SECONDS,
             SsoSession.MAX_IDLE, TimeUnit.SECONDS)
         .thenApply(x -> {
-          log.info("Session id={} created for userId={}", sessionId, userDTO.getId());
+          log.info("Session id={} created for userId={}", sessionId, user.getId());
           return sessionId;
         });
   }

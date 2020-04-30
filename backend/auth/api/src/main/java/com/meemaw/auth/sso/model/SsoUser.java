@@ -3,9 +3,9 @@ package com.meemaw.auth.sso.model;
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
 import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
-import com.meemaw.shared.auth.UserDTO;
-import com.meemaw.shared.auth.AuthUser;
-import com.meemaw.shared.auth.UserRole;
+import com.meemaw.auth.model.User;
+import com.meemaw.auth.model.UserDTO;
+import com.meemaw.auth.model.UserRole;
 import java.io.IOException;
 import java.util.UUID;
 import lombok.Data;
@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SsoUser implements AuthUser, IdentifiedDataSerializable {
+public class SsoUser implements User, IdentifiedDataSerializable {
 
   UUID id;
   String email;
   UserRole role;
   String org;
 
-  public SsoUser(UserDTO userDTO) {
-    this.id = userDTO.getId();
-    this.email = userDTO.getEmail();
-    this.role = userDTO.getRole();
-    this.org = userDTO.getOrg();
+  public SsoUser(User user) {
+    this.id = user.getId();
+    this.email = user.getEmail();
+    this.role = user.getRole();
+    this.org = user.getOrg();
   }
 
   @Override
@@ -53,7 +53,7 @@ public class SsoUser implements AuthUser, IdentifiedDataSerializable {
     this.org = in.readUTF();
   }
 
-  public UserDTO dto() {
+  public User dto() {
     return new UserDTO(id, email, role, org);
   }
 

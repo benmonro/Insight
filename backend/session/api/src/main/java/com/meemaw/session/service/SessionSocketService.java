@@ -1,7 +1,7 @@
 package com.meemaw.session.service;
 
-import com.meemaw.events.stream.EventsStream;
 import com.meemaw.events.model.internal.BrowserUnloadEvent;
+import com.meemaw.events.stream.EventsStream;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;

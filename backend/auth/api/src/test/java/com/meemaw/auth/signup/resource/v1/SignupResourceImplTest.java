@@ -11,7 +11,7 @@ import com.meemaw.auth.password.resource.v1.PasswordResource;
 import com.meemaw.auth.password.resource.v1.PasswordResourceImplTest;
 import com.meemaw.auth.signup.model.dto.SignupRequestCompleteDTO;
 import com.meemaw.auth.sso.resource.v1.SsoResourceImplTest;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import com.meemaw.test.testconainers.pg.Postgres;
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.MockMailbox;
@@ -32,7 +32,6 @@ import org.jsoup.select.Elements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
 
 @Postgres
 @QuarkusTest

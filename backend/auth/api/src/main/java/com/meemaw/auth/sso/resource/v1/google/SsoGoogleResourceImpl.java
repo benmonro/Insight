@@ -1,7 +1,7 @@
 package com.meemaw.auth.sso.resource.v1.google;
 
 import com.meemaw.auth.sso.service.google.SsoGoogleService;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import java.net.URI;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;

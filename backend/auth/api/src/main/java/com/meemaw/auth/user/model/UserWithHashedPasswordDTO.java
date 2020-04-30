@@ -1,7 +1,8 @@
 package com.meemaw.auth.user.model;
 
-import com.meemaw.shared.auth.UserDTO;
-import com.meemaw.shared.auth.UserRole;
+import com.meemaw.auth.model.User;
+import com.meemaw.auth.model.UserDTO;
+import com.meemaw.auth.model.UserRole;
 import java.util.UUID;
 import lombok.Value;
 
@@ -14,7 +15,7 @@ public class UserWithHashedPasswordDTO {
   String org;
   String password;
 
-  public UserDTO user() {
+  public User user() {
     return new UserDTO(id, email, role, org);
   }
 }

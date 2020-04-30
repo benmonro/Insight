@@ -8,8 +8,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-hibernate-validator'
     implementation 'io.quarkus:quarkus-reactive-pg-client'
     implementation 'io.quarkus:quarkus-smallrye-health'
-    implementation project(":events:model")
+    implementation project(":events:quarkus-model")
     implementation project(':auth:sidecar')
 
-    testImplementation project(':shared:testing-utils')
+    testImplementation project(':shared:quarkus-testing-utils')
 }

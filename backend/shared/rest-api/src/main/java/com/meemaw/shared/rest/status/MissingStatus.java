@@ -23,8 +23,8 @@ public enum MissingStatus implements StatusType {
     this.family = Family.familyOf(code);
   }
 
-  private int statusCode;
-  private String reasonPhrase;
-  private Family family;
+  private final int statusCode;
+  private final String reasonPhrase;
+  private final Family family;
 
 }

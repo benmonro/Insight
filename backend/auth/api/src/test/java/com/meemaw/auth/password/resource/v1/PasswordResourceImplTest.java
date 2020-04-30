@@ -10,7 +10,7 @@ import com.meemaw.auth.password.model.dto.PasswordForgotRequestDTO;
 import com.meemaw.auth.password.model.dto.PasswordResetRequestDTO;
 import com.meemaw.auth.signup.resource.v1.SignupResourceImplTest;
 import com.meemaw.auth.sso.resource.v1.SsoResource;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import com.meemaw.test.testconainers.pg.Postgres;
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.MockMailbox;

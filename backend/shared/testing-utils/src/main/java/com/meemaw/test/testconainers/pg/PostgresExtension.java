@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 /**
  * JUnit5 compatible test resource.
  * <p>
- * USAGE: {@link com.meemaw.test.testconainers.pg.Postgres}
+ * USAGE: {@link Postgres}
  */
 public class PostgresExtension implements BeforeAllCallback {
 

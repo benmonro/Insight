@@ -8,25 +8,25 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ProjectUtils {
 
-  private static final String BACKEND = "backend";
+  private final String BACKEND = "backend";
 
-  private static String getUserDirectory() {
+  private String getUserDirectory() {
     return System.getProperty("user.dir");
   }
 
-  private static File root() {
+  private File root() {
     return new File(getUserDirectory().split(BACKEND)[0]);
   }
 
-  public static Path backendPath() {
+  public Path backendPath() {
     return Paths.get(root().toString(), BACKEND).toAbsolutePath();
   }
 
-  public static Path getFromBackend(String... args) {
+  public Path getFromBackend(String... args) {
     return Paths.get(ProjectUtils.backendPath().toString(), args);
   }
 
-  public static Path getFromModule(String... args) {
+  public Path getFromModule(String... args) {
     return Paths.get(getUserDirectory(), args);
   }
 

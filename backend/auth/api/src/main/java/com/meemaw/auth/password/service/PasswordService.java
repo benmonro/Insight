@@ -1,14 +1,14 @@
 package com.meemaw.auth.password.service;
 
+import com.meemaw.auth.model.User;
 import com.meemaw.auth.password.model.dto.PasswordResetRequestDTO;
-import com.meemaw.shared.auth.UserDTO;
 import io.vertx.axle.sqlclient.Transaction;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 
 public interface PasswordService {
 
-  CompletionStage<UserDTO> verifyPassword(String email, String password);
+  CompletionStage<User> verifyPassword(String email, String password);
 
   CompletionStage<Boolean> forgot(String email);
 

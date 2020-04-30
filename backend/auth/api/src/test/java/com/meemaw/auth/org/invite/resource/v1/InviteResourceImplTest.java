@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.meemaw.auth.model.UserRole;
 import com.meemaw.auth.org.invite.model.dto.InviteAcceptDTO;
 import com.meemaw.auth.org.invite.model.dto.InviteCreateDTO;
 import com.meemaw.auth.org.invite.model.dto.InviteSendDTO;
 import com.meemaw.auth.sso.resource.v1.SsoResourceImplTest;
-import com.meemaw.shared.auth.SsoSession;
-import com.meemaw.shared.auth.UserRole;
+import com.meemaw.shared.rest.auth.SsoSession;
 import com.meemaw.test.testconainers.pg.Postgres;
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.MockMailbox;
@@ -130,7 +130,7 @@ public class InviteResourceImplTest {
         .then()
         .statusCode(422)
         .body(sameJson(
-            "{\"error\":{\"statusCode\":422,\"reason\":\"Unprocessable Entity\",\"message\":\"Cannot deserialize value of type `com.meemaw.shared.auth.UserRole` from String \\\"HA\\\": not one of the values accepted for Enum class: [STANDARD, ADMIN]\"}}"));
+            "{\"error\":{\"statusCode\":422,\"reason\":\"Unprocessable Entity\",\"message\":\"Cannot deserialize value of type `com.meemaw.auth.model.UserRole` from String \\\"HA\\\": not one of the values accepted for Enum class: [STANDARD, ADMIN]\"}}"));
   }
 
   @Test

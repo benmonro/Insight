@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.meemaw.session.model.PageIdentity;
-import com.meemaw.shared.auth.SsoSession;
+import com.meemaw.shared.rest.auth.SsoSession;
 import com.meemaw.shared.rest.response.DataResponse;
-import com.meemaw.test.testconainers.pg.PostgresTestResource;
+import com.meemaw.quarkus.test.testconainers.pg.PostgresTestResource;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.common.mapper.TypeRef;
@@ -63,7 +63,7 @@ public class SessionResourceTest {
         .then()
         .statusCode(400)
         .body(sameJson(
-            "{\"error\":{\"statusCode\":400,\"reason\":\"Bad Request\",\"message\":\"Validation Error\",\"errors\":{\"doctype\":\"may not be null\",\"referrer\":\"may not be null\",\"orgId\":\"may not be null\",\"url\":\"may not be null\"}}}"));
+            "{\"error\":{\"statusCode\":400,\"reason\":\"Bad Request\",\"message\":\"Validation Error\",\"errors\":{\"doctype\":\"may not be null\",\"orgId\":\"may not be null\",\"url\":\"may not be null\"}}}"));
   }
 
   @Test

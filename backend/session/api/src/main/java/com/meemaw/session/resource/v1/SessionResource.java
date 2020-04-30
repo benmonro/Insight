@@ -1,7 +1,7 @@
 package com.meemaw.session.resource.v1;
 
 import com.meemaw.session.model.PageDTO;
-import com.meemaw.shared.auth.CookieAuth;
+import com.meemaw.shared.rest.auth.CookieAuth;
 import java.util.concurrent.CompletionStage;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

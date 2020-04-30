@@ -1,12 +1,12 @@
 package com.meemaw.auth.password.service;
 
+import com.meemaw.auth.model.User;
 import com.meemaw.auth.password.datasource.PasswordDatasource;
 import com.meemaw.auth.password.datasource.PasswordResetDatasource;
 import com.meemaw.auth.password.model.PasswordResetRequest;
 import com.meemaw.auth.password.model.dto.PasswordResetRequestDTO;
 import com.meemaw.auth.signup.datasource.SignupDatasource;
 import com.meemaw.auth.user.datasource.UserDatasource;
-import com.meemaw.shared.auth.UserDTO;
 import com.meemaw.auth.user.model.UserWithHashedPasswordDTO;
 import com.meemaw.shared.rest.exception.BoomException;
 import com.meemaw.shared.rest.exception.DatabaseException;
@@ -52,7 +52,7 @@ public class PasswordServiceImpl implements PasswordService {
 
   private static final String FROM_SUPPORT = "Insight Support <support@insight.com>";
 
-  public CompletionStage<UserDTO> verifyPassword(String email, String password) {
+  public CompletionStage<User> verifyPassword(String email, String password) {
     return passwordDatasource.findUserWithPassword(email)
         .thenApply(maybeUserWithPasswordHash -> {
           UserWithHashedPasswordDTO withPassword = maybeUserWithPasswordHash.orElseThrow(() -> {
@@ -93,14 +93,14 @@ public class PasswordServiceImpl implements PasswordService {
   }
 
 
-  private CompletionStage<Boolean> forgot(UserDTO userDTO) {
-    return pgPool.begin().thenCompose(transaction -> forgotTransactional(transaction, userDTO));
+  private CompletionStage<Boolean> forgot(User user) {
+    return pgPool.begin().thenCompose(transaction -> forgotTransactional(transaction, user));
   }
 
-  private CompletionStage<Boolean> forgotTransactional(Transaction transaction, UserDTO userDTO) {
-    String email = userDTO.getEmail();
-    String org = userDTO.getOrg();
-    UUID userId = userDTO.getId();
+  private CompletionStage<Boolean> forgotTransactional(Transaction transaction, User user) {
+    String email = user.getEmail();
+    String org = user.getOrg();
+    UUID userId = user.getId();
 
     return passwordResetDatasource.create(transaction, email, userId, org)
         .thenApply(passwordResetRequest -> sendPasswordResetEmail(passwordResetRequest)

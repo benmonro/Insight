@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class EventsStream {
 
-  public static final String ALL = "events";
-  public static final String UNLOAD = "events-unload";
+  public final String ALL = "events";
+  public final String UNLOAD = "events-unload";
 
 }

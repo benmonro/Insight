@@ -1,5 +1,6 @@
 package com.meemaw.auth.org.invite.service;
 
+import com.meemaw.auth.model.UserRole;
 import com.meemaw.auth.org.invite.datasource.InviteDatasource;
 import com.meemaw.auth.org.invite.model.CanInviteSend;
 import com.meemaw.auth.org.invite.model.dto.InviteAcceptDTO;
@@ -8,8 +9,7 @@ import com.meemaw.auth.org.invite.model.dto.InviteCreateIdentifiedDTO;
 import com.meemaw.auth.org.invite.model.dto.InviteDTO;
 import com.meemaw.auth.org.invite.model.dto.InviteSendDTO;
 import com.meemaw.auth.user.datasource.UserDatasource;
-import com.meemaw.shared.auth.InsightPrincipal;
-import com.meemaw.shared.auth.UserRole;
+import com.meemaw.shared.rest.auth.InsightPrincipal;
 import com.meemaw.shared.rest.response.Boom;
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.reactive.ReactiveMailer;

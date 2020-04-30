@@ -4,9 +4,17 @@ plugins {
 }
 
 dependencies {
-    api enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    api 'io.smallrye.reactive:smallrye-mutiny-vertx-web-client'
-    api project(":shared:rest-api")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 
-    testImplementation project(":shared:testing-utils")
+    compileOnly "javax.annotation:javax.annotation-api:1.3.2"
+    compileOnly "javax.enterprise:cdi-api:2.0"
+    compileOnly "javax.ws.rs:javax.ws.rs-api:2.1.1"
+    compileOnly "org.eclipse.microprofile.config:microprofile-config-api:1.4"
+    compileOnly "org.slf4j:slf4j-api:2.0.0-alpha1"
+
+    api 'io.smallrye.reactive:smallrye-mutiny-vertx-web-client'
+    api project(":auth:model")
+    api project(":shared:quarkus-rest-api")
+
+    testImplementation project(":shared:quarkus-testing-utils")
 }

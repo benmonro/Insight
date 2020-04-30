@@ -1,20 +1,19 @@
 plugins {
     id 'java-library'
-    id 'io.quarkus'
 }
 
 dependencies {
-    implementation 'io.quarkus:quarkus-reactive-pg-client'
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2'
+    implementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticsearchVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation project(":shared:json")
 
+    api "io.smallrye.reactive:smallrye-mutiny-vertx-pg-client:${smallryeVersion}"
     api 'org.awaitility:awaitility:4.0.2'
-    api 'io.quarkus:quarkus-junit5'
-    api 'io.rest-assured:rest-assured'
+    api 'io.rest-assured:rest-assured:4.3.0'
     api 'org.skyscreamer:jsonassert:1.5.0'
-    api 'org.testcontainers:testcontainers:1.14.1'
-    api 'org.testcontainers:junit-jupiter:1.14.1'
-    api 'org.testcontainers:postgresql:1.14.1'
-    api 'org.testcontainers:kafka:1.14.1'
-    api 'org.testcontainers:elasticsearch:1.14.1'
-    implementation project(':shared:rest-api')
+    api "org.testcontainers:testcontainers:${testcontainersVersion}"
+    api "org.testcontainers:junit-jupiter:${testcontainersVersion}"
+    api "org.testcontainers:postgresql:${testcontainersVersion}"
+    api "org.testcontainers:kafka:${testcontainersVersion}"
+    api "org.testcontainers:elasticsearch:${testcontainersVersion}"
 }

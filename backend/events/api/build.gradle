@@ -10,8 +10,9 @@ dependencies {
     implementation 'io.quarkus:quarkus-smallrye-health'
     implementation project(":events:model")
     implementation project(':auth:sidecar')
+    implementation project(':shared:quarkus-rest-api')
 
-    testImplementation project(':shared:testing-utils')
+    testImplementation project(':shared:quarkus-testing-utils')
 }
 
 

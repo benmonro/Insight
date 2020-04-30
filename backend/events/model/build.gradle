@@ -1,11 +1,15 @@
-plugins {
-    id 'java-library'
-    id 'io.quarkus'
+dependencies {
+    compileOnly "org.apache.kafka:kafka-clients:${kafkaVersion}"
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    compileOnly "javax.validation:validation-api:2.0.1.Final"
+    compileOnly "org.slf4j:slf4j-api:2.0.0-alpha1"
+
+    testImplementation project(":shared:testing-utils")
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
 }
 
-dependencies {
-    api enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    api 'io.quarkus:quarkus-resteasy-jackson'
-    api 'io.quarkus:quarkus-smallrye-reactive-messaging-kafka'
-    testImplementation project(":shared:testing-utils")
+test {
+    useJUnitPlatform()
 }
